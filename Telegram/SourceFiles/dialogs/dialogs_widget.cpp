@@ -392,6 +392,7 @@ Widget::Widget(
 			_childListPeerId.value(),
 			_childListShown.value(),
 			makeChildListShown)));
+	_inner->setFocusPolicy(Qt::StrongFocus);
 	rpl::combine(
 		_scroll->heightValue(),
 		_topBarSuggestionHeightChanged.events_starting_with(0)
@@ -1371,6 +1372,7 @@ void Widget::setupMainMenuToggle() {
 	_mainMenu.toggle->setClickedCallback([=] { showMainMenu(); });
 	_mainMenu.toggle->setIsMenuButton(true);
 	_mainMenu.toggle->setAccessibleName(tr::lng_main_menu(tr::now));
+	_mainMenu.toggle->setFocusPolicy(Qt::StrongFocus);
 
 	rpl::single(rpl::empty) | rpl::then(
 		controller()->filtersMenuChanged()
